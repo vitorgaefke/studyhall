@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:studyhall/components/button.dart';
 import 'package:studyhall/components/text_field.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final Function()? onTap;
-  const LoginPage({super.key, required this.onTap});
+  const RegisterPage({super.key, required this.onTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-
-  // controller de text editing
+class _RegisterPageState extends State<RegisterPage> {
+    // controller de text editing
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
+  final confirmPasswordTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +29,15 @@ class _LoginPageState extends State<LoginPage> {
               children: [
               // logo
                 const Icon(
-                  Icons.lock,
-                  size: 100,
+                  Icons.person,
+                  size: 150,
                 ),
                 
                 const SizedBox(height: 50),
           
               //bem vindo
                 const Text(
-                  'Bem vindo de volta, sentimos sua falta!',
+                  'Insira seus dados e faça parte da comunidade!',
                   style: TextStyle(
                     color: Colors.grey,
                   ),
@@ -53,18 +53,23 @@ class _LoginPageState extends State<LoginPage> {
               MyTextField(controller: passwordTextController, hintText: 'Senha', obscureText: true),
 
               const SizedBox(height: 10),
+
+              // confirmar senha
+              MyTextField(controller: confirmPasswordTextController, hintText: 'Confirme sua senha', obscureText: true),
+
+              const SizedBox(height: 10),
                   
               //btn entrar
-              MyButton(onTap: () {}, text: 'Entrar'),
+              MyButton(onTap: () {}, text: 'Cadastrar'),
 
               const SizedBox(height: 25),
               
-              //registrar
+              //login
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    'Não tem uma conta?',
+                    'Já possui uma conta?',
                     style: TextStyle(
                       color: Colors.grey,
                     ),
@@ -73,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                   GestureDetector(
                     onTap: widget.onTap,
                     child: const Text(
-                      'Registrar',
+                      'Entrar',
                       style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
@@ -89,4 +94,4 @@ class _LoginPageState extends State<LoginPage> {
     ),
     );
   }
-}
+}  
