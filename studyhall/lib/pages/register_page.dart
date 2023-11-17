@@ -1,20 +1,53 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:studyhall/components/button.dart';
 import 'package:studyhall/components/text_field.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
-  const RegisterPage({super.key, this.onTap});
+  const RegisterPage({super.key, required this.onTap});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-    // controller de text editing
+  // controller de text editing
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   final confirmPasswordTextController = TextEditingController();
+
+  // cadastrar usuário
+  void signUserUp() async{
+    showDialog(
+    context: context,
+    builder: (context) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    },
+   );
+
+    try {
+      if (passwordTextController.text == confirmPasswordTextController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailTextController.text,
+          password: passwordTextController.text,
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('As senhas não coincidem'),
+          ),
+        );
+      }
+  } on FirebaseAuthException catch (e) {
+    Navigator.pop(context);
+    showAboutDialog(context: context, children: [
+      Text(e.message ?? 'Erro desconhecido'),
+    ]);
+  }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +93,7 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(height: 10),
                   
               //btn entrar
-              MyButton(onTap: () {}, text: 'Cadastrar'),
+              MyButton(onTap: signUserUp, text: 'Cadastrar'),
 
               const SizedBox(height: 25),
               

@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:studyhall/components/button.dart';
 import 'package:studyhall/components/text_field.dart';
+import 'package:studyhall/pages/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -15,6 +17,16 @@ class _LoginPageState extends State<LoginPage> {
   // controller de text editing
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
+
+  // logar usuário
+  void signUserIn() async{
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const HomePage();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 10),
                   
               //btn entrar
-              MyButton(onTap: () {}, text: 'Entrar'),
+              MyButton(onTap: signUserIn, text: 'Entrar'),
 
               const SizedBox(height: 25),
               

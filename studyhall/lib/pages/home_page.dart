@@ -55,18 +55,18 @@ void postMessage() {}
                     color: Colors.yellow[700],
                   ),
 
-                  //botao anexar
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.attach_file),
-                    color: Colors.yellow[700],
-                  ),
+                  // //botao anexar
+                  // IconButton(
+                  //   onPressed: () {},
+                  //   icon: const Icon(Icons.attach_file),
+                  //   color: Colors.yellow[700],
+                  // ),
                 ],
               ),
             ),
       
             //logado como
-            Text("Logado como: vitorgaefke@gmail.com")
+            const Text("Logado como: vitorgaefke@gmail.com")
           ],
         ),
       ),
