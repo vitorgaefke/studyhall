@@ -55,12 +55,12 @@ void postMessage() {}
                     color: Colors.yellow[700],
                   ),
 
-                  // //botao anexar
-                  // IconButton(
-                  //   onPressed: () {},
-                  //   icon: const Icon(Icons.attach_file),
-                  //   color: Colors.yellow[700],
-                  // ),
+                  //botao anexar
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.attach_file),
+                    color: Colors.yellow[700],
+                  ),
                 ],
               ),
             ),

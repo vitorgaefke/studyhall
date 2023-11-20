@@ -20,12 +20,11 @@ class _LoginPageState extends State<LoginPage> {
 
   // logar usuário
   void signUserIn() async{
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const HomePage();
-      },
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailTextController.text,
+      password: passwordTextController.text,
     );
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
   }
 
   @override
