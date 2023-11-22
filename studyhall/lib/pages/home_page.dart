@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:studyhall/components/text_field.dart';
+import 'package:studyhall/components/posts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,13 +14,32 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-//usuário nao logado
+//usuário logado
+final currentUser = FirebaseAuth.instance.currentUser!;
 
 //controller text
 final textController = TextEditingController();
 
+// deslogar usuario
+void signOut() {
+  FirebaseAuth.instance.signOut();
+  }
+
 //msgpost
-void postMessage() {}
+void postMessage() {
+  if (textController.text.isNotEmpty) {
+    FirebaseFirestore.instance.collection("posts").add({
+      "Usuario": currentUser.email,
+      "Mensagem": textController.text,
+      "TimeStamp": Timestamp.now(),
+    });
+  }
+
+  //limpar textfield
+  setState(() {
+    textController.clear();
+  });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +51,46 @@ void postMessage() {}
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.logout),
+            icon: const Icon(Icons.person),
           ),],
       ),
       body: Center(
         child: Column(
           children: [
-            //app
-      
-            //post
+            //posts
+            Expanded(
+              child: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection("posts")
+                    .orderBy(
+                      "TimeStamp",
+                      descending: false,
+                    )
+                  .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        final post = snapshot.data!.docs[index];
+                        return ShPosts(
+                          mensagem: post["Mensagem"],
+                          user: post["Usuario"],
+                          );
+                      },
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Text('Erro:${snapshot.error}' ),
+                    );
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              ),
+            ),
+            //barra post
             Padding(
               padding: const EdgeInsets.all(25.0),
               child: Row(
@@ -66,7 +120,8 @@ void postMessage() {}
             ),
       
             //logado como
-            const Text("Logado como: vitorgaefke@gmail.com")
+            Text("Logado como: " + currentUser.email!,
+            style: const TextStyle(color: Colors.grey)),
           ],
         ),
       ),

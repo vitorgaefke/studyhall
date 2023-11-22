@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:studyhall/components/button.dart';
 import 'package:studyhall/components/text_field.dart';
+import 'package:studyhall/pages/home_page.dart';
 //import 'package:studyhall/pages/home_page.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -48,6 +49,7 @@ class _RegisterPageState extends State<RegisterPage> {
       Text(e.message ?? 'Erro desconhecido'),
     ]);
   }
+  Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
   }
 
   @override
