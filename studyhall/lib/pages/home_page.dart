@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:studyhall/components/text_field.dart';
 import 'package:studyhall/components/posts.dart';
+import 'package:studyhall/pages/profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -50,7 +50,9 @@ void postMessage() {
         backgroundColor: Colors.yellow[700],
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
+            },
             icon: const Icon(Icons.person),
           ),],
       ),
@@ -120,8 +122,9 @@ void postMessage() {
             ),
       
             //logado como
-            Text("Logado como: " + currentUser.email!,
+            Text("Logado como: ${currentUser.email!}",
             style: const TextStyle(color: Colors.grey)),
+            const SizedBox(height: 10),
           ],
         ),
       ),

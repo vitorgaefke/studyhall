@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:studyhall/components/Comments.dart';
+import 'package:studyhall/components/like_button.dart';
 
-class ShPosts extends StatelessWidget {
+class ShPosts extends StatefulWidget {
   final String mensagem;
   final String user;
   const ShPosts({
@@ -10,19 +12,27 @@ class ShPosts extends StatelessWidget {
     });
 
   @override
+  State<ShPosts> createState() => _ShPostsState();
+}
+
+class _ShPostsState extends State<ShPosts> {
+
+
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
-      margin: EdgeInsets.only(top: 25, left: 25, right: 25),
-      padding: EdgeInsets.all(25),
+      margin: const EdgeInsets.only(top: 25, left: 25, right: 25),
+      padding: const EdgeInsets.all(25),
       child: Row(
         children: [
           Container(
             decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey[300]),
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: const Icon(Icons.person, color: Colors.white),
           ),
           const SizedBox(width: 20),
@@ -30,13 +40,22 @@ class ShPosts extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                user,
+                widget.user,
                 style: TextStyle(color: Colors.grey[700]),
                 ),
               const SizedBox(height: 10),
-              Text(mensagem),
+              Text(widget.mensagem),
             ],
-          )
+          ),
+          const SizedBox(width: 20),
+          LikeButton(
+            isLiked: true,
+            onTap: () {}
+          ),
+          const SizedBox(width: 20),
+          CommentsButton(
+            onTap: () {}
+          ),
         ],
       ),
     );
