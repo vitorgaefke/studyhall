@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:studyhall/components/drawer.dart';
 import 'package:studyhall/components/text_field.dart';
 import 'package:studyhall/components/posts.dart';
-import 'package:studyhall/pages/profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -48,13 +48,9 @@ void postMessage() {
       appBar: AppBar(
         title: const Text('Study Hall'),
         backgroundColor: Colors.yellow[700],
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
-            },
-            icon: const Icon(Icons.person),
-          ),],
+      ),
+      drawer: MyDrawer(
+        onSignOut: signOut,
       ),
       body: Center(
         child: Column(
