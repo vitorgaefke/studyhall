@@ -19,7 +19,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
-        title: const Text('SEU PERFIL!'),
+        title: const Text('SEU PERFIL'),
         backgroundColor: Colors.yellow[700],
       ),
       body: ListView(

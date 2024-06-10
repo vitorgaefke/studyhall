@@ -1,56 +1,41 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:studyhall/components/botao_filtro.dart';
-import 'package:studyhall/components/drawer.dart';
-import 'package:studyhall/components/text_field.dart';
 import 'package:studyhall/components/posts.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class PaginaPrazos extends StatefulWidget {
+  const PaginaPrazos({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<PaginaPrazos> createState() => _PaginaPrazosState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _PaginaPrazosState extends State<PaginaPrazos> {
 
-//usuário logado
+  //usuário logado
 final currentUser = FirebaseAuth.instance.currentUser!;
 
-//controller text
-final textController = TextEditingController();
-
-// deslogar usuario
-void signOut() {
-  FirebaseAuth.instance.signOut();
-  }
-
-//msgpost
-void postMessage() {
-  if (textController.text.isNotEmpty) {
-    FirebaseFirestore.instance.collection("posts").add({
-      "Usuario": currentUser.email,
-      "Mensagem": textController.text,
-      "TimeStamp": Timestamp.now(),
-    });
-  }
-
-  //limpar textfield
-  setState(() {
-    textController.clear();
-  });
-}
+//prazo post
+// void novoPrazo() {
+//   if (textController.text.isNotEmpty) {
+//     FirebaseFirestore.instance.collection("posts").add({
+//       "Usuario": currentUser.email,
+//       "Mensagem": textController.text,
+//       "Materia": textController.value,
+//       "TimeStamp": Timestamp.now(),
+//     });
+//   }
+  
+// }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
-        title: const Text('Study Hall'),
         backgroundColor: Colors.yellow[700],
+        title: const Text('DATAS E PRAZOS'),
       ),
-      drawer: const MyDrawer(),
       body: Center(
         child: Column(
           children: [
@@ -86,39 +71,7 @@ void postMessage() {
                   );
                 },
               ),
-            ),
-            //barra post
-            Padding(
-              padding: const EdgeInsets.all(25.0),
-              child: Row(
-                children: [
-                  //texto postar
-                  Expanded(
-                    child: MyTextField(controller: textController,
-                    hintText: 'Contribua com a comunidade!',
-                    obscureText: false),
-                  ),
-
-                  //botao filtrar
-                  const BotaoFiltro(),
-
-                  //botao anexar
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.attach_file),
-                    color: Colors.yellow[700],
-                  ),
-
-                  //botao postar
-                  IconButton(
-                    onPressed: postMessage,
-                    icon: const Icon(Icons.send),
-                    color: Colors.yellow[700],
-                  ),
-                ],
-              ),
-            ),
-      
+            ),    
             //logado como
             Text("Logado como: ${currentUser.email!}",
             style: const TextStyle(color: Colors.grey)),
@@ -126,6 +79,11 @@ void postMessage() {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.yellow[700],
+        child: const Icon(Icons.add, color: Colors.white),
+      ), 
     );
   }
 }

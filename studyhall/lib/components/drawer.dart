@@ -1,11 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:studyhall/auth/login_or_register.dart';
 import 'package:studyhall/components/list_tyle.dart';
+import 'package:studyhall/pages/prazos_page.dart';
 import 'package:studyhall/pages/profile_page.dart';
 
 class MyDrawer extends StatelessWidget {
-  final void Function()? onSignOut;
-  const MyDrawer({super.key,
-  required this.onSignOut});
+  const MyDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +37,21 @@ class MyDrawer extends StatelessWidget {
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage())),
           ),
 
+          // datas de entrega
+          MyListTile(
+            icon: Icons.calendar_month,
+            text: 'P R A Z O S',
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const PaginaPrazos())),
+          ),
+
           //logout
           MyListTile(
             icon: Icons.logout,
             text: 'L O G O U T',
-            onTap: onSignOut!,
+            onTap: () {
+             Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginOrRegister()));
+             FirebaseAuth.instance.signOut();
+            },
           ),
         ],
       ),
