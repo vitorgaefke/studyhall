@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:studyhall/components/botao_filtro.dart';
 import 'package:studyhall/components/drawer.dart';
 import 'package:studyhall/components/text_field.dart';
@@ -97,16 +98,6 @@ void postMessage() {
                     child: MyTextField(controller: textController,
                     hintText: 'Contribua com a comunidade!',
                     obscureText: false),
-                  ),
-
-                  //botao filtrar
-                  const BotaoFiltro(),
-
-                  //botao anexar
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.attach_file),
-                    color: Colors.yellow[700],
                   ),
 
                   //botao postar

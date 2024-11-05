@@ -1,89 +1,66 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:studyhall/components/posts.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:studyhall/pages/criar_prazos_page.dart';
 
-class PaginaPrazos extends StatefulWidget {
-  const PaginaPrazos({super.key});
+class TelaEventos extends StatefulWidget {
+  const TelaEventos({super.key});
 
   @override
-  State<PaginaPrazos> createState() => _PaginaPrazosState();
+  State<TelaEventos> createState() => _TelaEventos();
 }
 
-class _PaginaPrazosState extends State<PaginaPrazos> {
+class _TelaEventos extends State<TelaEventos> {
 
-  //usuário logado
-final currentUser = FirebaseAuth.instance.currentUser!;
-
-//prazo post
-// void novoPrazo() {
-//   if (textController.text.isNotEmpty) {
-//     FirebaseFirestore.instance.collection("posts").add({
-//       "Usuario": currentUser.email,
-//       "Mensagem": textController.text,
-//       "Materia": textController.value,
-//       "TimeStamp": Timestamp.now(),
-//     });
-//   }
-  
-// }
+  DateTime? _selectedDate;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
       appBar: AppBar(
         backgroundColor: Colors.yellow[700],
-        title: const Text('DATAS E PRAZOS'),
-      ),
-      body: Center(
-        child: Column(
+        title: Row(
           children: [
-            //posts
-            Expanded(
-              child: StreamBuilder(
-                stream: FirebaseFirestore.instance
-                    .collection("posts")
-                    .orderBy(
-                      "TimeStamp",
-                      descending: true,
-                    )
-                  .snapshots(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return ListView.builder(
-                      itemCount: snapshot.data!.docs.length,
-                      itemBuilder: (context, index) {
-                        final post = snapshot.data!.docs[index];
-                        return ShPosts(
-                          mensagem: post["Mensagem"],
-                          user: post["Usuario"],
-                          );
-                      },
-                    );
-                  } else if (snapshot.hasError) {
-                    return Center(
-                      child: Text('Erro:${snapshot.error}' ),
-                    );
-                  }
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
+            Text(_selectedDate != null
+            ? _selectedDate!.toIso8601String().substring(0,10)
+            : "Todos os prazos"),
+            if (_selectedDate != null)
+              IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () {
+                  setState(() {
+                    _selectedDate = null;
+                  });
                 },
               ),
-            ),    
-            //logado como
-            Text("Logado como: ${currentUser.email!}",
-            style: const TextStyle(color: Colors.grey)),
-            const SizedBox(height: 10),
           ],
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.calendar_today),
+            onPressed: () async {
+              DateTime? newDate = await showDatePicker(
+                context: context,
+                initialDate: _selectedDate ?? DateTime.now(),
+                firstDate: DateTime(2021),
+                lastDate: DateTime(2028),
+              );
+              if (newDate != null) {
+                setState(() {
+                  _selectedDate = newDate;
+                });
+              }
+            },
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.yellow[700],
-        child: const Icon(Icons.add, color: Colors.white),
-      ), 
+        onPressed: () {
+          Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const CriarPrazosPage()));
+        },
+        child: Icon(Icons.add), backgroundColor: Colors.yellow[700],
+      ),
     );
   }
 }

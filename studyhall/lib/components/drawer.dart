@@ -41,7 +41,14 @@ class MyDrawer extends StatelessWidget {
           MyListTile(
             icon: Icons.calendar_month,
             text: 'P R A Z O S',
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const PaginaPrazos())),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const TelaEventos())),
+          ),
+
+          // galeria de imagens
+          MyListTile(
+            icon: Icons.photo_album,
+            text: 'G A L E R I A',
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const TelaEventos())),
           ),
 
           //logout

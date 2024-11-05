@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
               // logo
                 const Icon(
-                  Icons.lock,
+                  Icons.menu_book_outlined,
                   size: 100,
                 ),
                 

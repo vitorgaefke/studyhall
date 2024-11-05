@@ -33,6 +33,12 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           const SizedBox(height: 15),
 
+          //bt alterar foto
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('Alterar foto'),
+          ),
+
           //email
           Text(
             currentUser.email!,
