@@ -1,7 +1,9 @@
+import 'dart:html';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:studyhall/pages/criar_prazos_page.dart';
+import 'package:studyhall/services/storage/eventos.dart';
 
 class TelaEventos extends StatefulWidget {
   const TelaEventos({super.key});
@@ -26,7 +28,7 @@ class _TelaEventos extends State<TelaEventos> {
             : "Todos os prazos"),
             if (_selectedDate != null)
               IconButton(
-                icon: Icon(Icons.close),
+                icon: const Icon(Icons.close),
                 onPressed: () {
                   setState(() {
                     _selectedDate = null;
@@ -37,7 +39,7 @@ class _TelaEventos extends State<TelaEventos> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.calendar_today),
+            icon: const Icon(Icons.calendar_today),
             onPressed: () async {
               DateTime? newDate = await showDatePicker(
                 context: context,
@@ -54,12 +56,45 @@ class _TelaEventos extends State<TelaEventos> {
           ),
         ],
       ),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: _selectedDate == null
+          ? FirebaseFirestore.instance.collection("prazos").snapshots()
+          : FirebaseFirestore.instance
+            .collection("prazos")
+            .where("Dia", isEqualTo: _selectedDate)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(
+              child: Text("Error: ${snapshot.error}"),
+            );
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          List<Evento> eventos = 
+            snapshot.data!.docs.map((e) => Evento.fromJson(e)).toList();
+          return ListView.builder(
+            itemCount: eventos.length,
+            itemBuilder: (context, index) {
+              Evento evento = eventos[index];
+              return ListTile(
+                title: Text(evento.titulo),
+                subtitle: Text(evento.dia.toIso8601String().substring(0,10)),
+                onTap: () {},
+              );
+            },
+          );
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context,
           MaterialPageRoute(builder: (context) => const CriarPrazosPage()));
-        },
-        child: Icon(Icons.add), backgroundColor: Colors.yellow[700],
+        }, backgroundColor: Colors.yellow[700],
+        child: const Icon(Icons.add),
       ),
     );
   }

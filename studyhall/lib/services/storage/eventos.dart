@@ -1,5 +1,5 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class Evento {
   final String id;
@@ -17,8 +17,8 @@ class Evento {
     Map data = doc.data() as Map<String, dynamic>;
     return Evento(
       id: doc.id,
-      titulo: data['titulo'],
-      dia: (data['dia'] as Timestamp).toDate(),
+      titulo: data['Titulo'],
+      dia: (data['Dia'] as Timestamp).toDate(),
     );
   }
 }
