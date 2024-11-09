@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:studyhall/auth/login_or_register.dart';
 import 'package:studyhall/components/list_tyle.dart';
+import 'package:studyhall/pages/gallery_page.dart';
 import 'package:studyhall/pages/prazos_page.dart';
 import 'package:studyhall/pages/profile_page.dart';
 
@@ -48,7 +49,7 @@ class MyDrawer extends StatelessWidget {
           MyListTile(
             icon: Icons.photo_album,
             text: 'G A L E R I A',
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const TelaEventos())),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const GalleryPage())),
           ),
 
           //logout
