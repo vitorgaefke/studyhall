@@ -24,28 +24,23 @@ class _GalleryPageState extends State<GalleryPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<StorageService>(
-      builder: (context, storageService, child) {
-        //lista de urls
-        final List<String> imageUrls = storageService.imageUrls;
-
-        return Scaffold(
-          floatingActionButton: FloatingActionButton(
-            onPressed: () => storageService.uploadImage(),
-            child: const Icon(Icons.add),
-          ),
-          body: ListView.builder(
-            itemCount: imageUrls.length,
-            itemBuilder: (context, index) {
-              // imagem especifica
-              final String imageUrl = imageUrls[index];
-
-              // post da imagem
-              return Image.network(imageUrl);
-            },
-          ),
-        );
-      },
+    return Scaffold(
+      backgroundColor: Colors.grey[300],
+      appBar: AppBar(
+        title: const Text('Galeria'),
+        backgroundColor: Colors.yellow[700],
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => UploadPostPage(),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
