@@ -49,7 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '121614191055',
     projectId: 'studyhall-3ad22',
     authDomain: 'studyhall-3ad22.firebaseapp.com',
-    storageBucket: 'studyhall-3ad22.appspot.com',
+    storageBucket: 'studyhall-3ad22.firebasestorage.app',
     measurementId: 'G-CCRHR49RW9',
   );
 
@@ -58,7 +58,7 @@ class DefaultFirebaseOptions {
     appId: '1:121614191055:android:484fbe3b66d3d4967c2aba',
     messagingSenderId: '121614191055',
     projectId: 'studyhall-3ad22',
-    storageBucket: 'studyhall-3ad22.appspot.com',
+    storageBucket: 'studyhall-3ad22.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -66,7 +66,7 @@ class DefaultFirebaseOptions {
     appId: '1:121614191055:ios:0c523a3e9be49a317c2aba',
     messagingSenderId: '121614191055',
     projectId: 'studyhall-3ad22',
-    storageBucket: 'studyhall-3ad22.appspot.com',
+    storageBucket: 'studyhall-3ad22.firebasestorage.app',
     iosBundleId: 'com.example.studyhall',
   );
 
@@ -75,7 +75,7 @@ class DefaultFirebaseOptions {
     appId: '1:121614191055:ios:a03576d457fa91ed7c2aba',
     messagingSenderId: '121614191055',
     projectId: 'studyhall-3ad22',
-    storageBucket: 'studyhall-3ad22.appspot.com',
+    storageBucket: 'studyhall-3ad22.firebasestorage.app',
     iosBundleId: 'com.example.studyhall.RunnerTests',
   );
 }

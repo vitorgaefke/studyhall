@@ -39,18 +39,15 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
               // logo
-                const Icon(
-                  Icons.menu_book_outlined,
-                  size: 100,
-                ),
-                
+                Image.asset('assets/studyhall.jpeg', width: 150, height: 150),
+
                 const SizedBox(height: 50),
           
               //bem vindo
                 const Text(
                   'Bem vindo de volta, sentimos sua falta!',
                   style: TextStyle(
-                    color: Colors.grey,
+                    color: Color.fromARGB(255, 158, 158, 158),
                   ),
                 ),
                 

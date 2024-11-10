@@ -12,16 +12,17 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Color.fromARGB(255, 224, 224, 224),
       child: Column(
         children: [
           // icon
           DrawerHeader(
-            child: Icon(
-              Icons.person,
-              color: Colors.yellow[700],
-              size: 70
-              ),
+            child: Image.asset("assets/studyhall.jpeg", width: 150, height: 150),
+            // child: Icon(
+            //   Icons.person,
+            //   color: Colors.yellow[700],
+            //   size: 70
+            //   ),
           ),
 
           // home
@@ -49,7 +50,7 @@ class MyDrawer extends StatelessWidget {
           MyListTile(
             icon: Icons.photo_album,
             text: 'G A L E R I A',
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const GalleryPage())),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const StoragePage())),
           ),
 
           //logout
