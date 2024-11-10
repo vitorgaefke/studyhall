@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
               // logo
-                Image.asset('assets/studyhall.jpeg', width: 150, height: 150),
+                Image.asset('assets/claro.jpeg', width: 150, height: 150),
 
                 const SizedBox(height: 50),
           
@@ -74,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                   const Text(
                     'Não tem uma conta?',
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: Color.fromARGB(255, 158, 158, 158),
                     ),
                   ),
                   const SizedBox(width: 4),

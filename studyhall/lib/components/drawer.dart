@@ -12,12 +12,12 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Color.fromARGB(255, 224, 224, 224),
+      backgroundColor: const Color.fromARGB(255, 224, 224, 224),
       child: Column(
         children: [
           // icon
           DrawerHeader(
-            child: Image.asset("assets/studyhall.jpeg", width: 150, height: 150),
+            child: Image.asset("assets/claro.jpeg", width: 150, height: 150),
             // child: Icon(
             //   Icons.person,
             //   color: Colors.yellow[700],
