@@ -60,11 +60,10 @@ class _ShPostsState extends State<ShPosts> {
     onTap: () {}
   ),
   const SizedBox(width: 20),
-  Comment(
+  CommentsButton(
     onTap: () {}
   ),
 ],
-
       ),
     );
   }

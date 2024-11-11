@@ -26,18 +26,36 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           const SizedBox(height: 50),
           //foto
-          const Icon(
-            Icons.account_circle,
-            size: 75,
-            color: Colors.grey,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ClipOval(
+              child: Image.asset(
+                'assets/biga.jpg',
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover, // Ajusta a imagem para preencher o círculo sem distorcer
+              ),
+            ),
           ),
+
           const SizedBox(height: 15),
 
           //bt alterar foto
           ElevatedButton(
-            onPressed: () {},
-            child: const Text('Alterar foto'),
-          ),
+  onPressed: () {},
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.yellow[700],
+    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8), // Padding menor
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8), // Bordas levemente arredondadas
+    ),
+  ),
+  child: const Text(
+    'Alterar foto',
+    style: TextStyle(fontSize: 14), // Fonte um pouco menor
+  ),
+),
+
 
           //email
           Text(

@@ -175,7 +175,8 @@ class _StoragePageState extends State<StoragePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: uploading ? Text('${total.round()}% enviado') : const Text('Firebase Storage'),
+        title: uploading ? Text('${total.round()}% enviado') : const Text('Galeria'),
+        backgroundColor: Colors.yellow[700],
         actions: [
           uploading
               ? const Padding(
@@ -215,7 +216,7 @@ class _StoragePageState extends State<StoragePage> {
                               fit: BoxFit.cover,
                             ),
                           ),
-                          title: Text('Image $index'),
+                          title: Text('Quadro Eng 3 08.11'),
                           trailing: IconButton(
                             icon: const Icon(Icons.delete),
                             onPressed: () => deleteImage(index),
