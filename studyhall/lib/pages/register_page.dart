@@ -64,10 +64,7 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
               // logo
-                const Icon(
-                  Icons.person,
-                  size: 150,
-                ),
+                Image.asset('assets/claro.jpeg', width: 250, height: 250),
                 
                 const SizedBox(height: 50),
           

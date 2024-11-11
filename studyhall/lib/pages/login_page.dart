@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:studyhall/components/button.dart';
 import 'package:studyhall/components/text_field.dart';
 import 'package:studyhall/pages/home_page.dart';
@@ -39,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
               // logo
-                Image.asset('assets/claro.jpeg', width: 150, height: 150),
+                Image.asset('assets/claro.jpeg', width: 250, height: 250),
 
                 const SizedBox(height: 50),
           

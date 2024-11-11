@@ -30,33 +30,41 @@ class _ShPostsState extends State<ShPosts> {
       padding: const EdgeInsets.all(25),
       child: Row(
         children: [
-          Container(
-            decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey[300]),
-            padding: const EdgeInsets.all(10),
-            child: const Icon(Icons.person, color: Colors.white),
-          ),
-          const SizedBox(width: 20),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                widget.user,
-                style: TextStyle(color: Colors.grey[700]),
-                ),
-              const SizedBox(height: 10),
-              Text(widget.mensagem),
-            ],
-          ),
-          const SizedBox(width: 20),
-          LikeButton(
-            isLiked: true,
-            onTap: () {}
-          ),
-          const SizedBox(width: 20),
-          CommentsButton(
-            onTap: () {}
-          ),
-        ],
+  Container(
+    decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey[300]),
+    padding: const EdgeInsets.all(10),
+    child: const Icon(Icons.person, color: Colors.white), // imagem de perfil
+  ),
+  const SizedBox(width: 20),
+  Expanded( // Adicionado para expandir o espaço disponível para o texto
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          widget.user,
+          style: TextStyle(color: Colors.grey[700]),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          widget.mensagem,
+          style: TextStyle(color: Colors.grey[800]), // Estilo opcional
+          softWrap: true, // Permitir quebra de linha
+          overflow: TextOverflow.visible,
+        ),
+      ],
+    ),
+  ),
+  const SizedBox(width: 20),
+  LikeButton(
+    isLiked: true,
+    onTap: () {}
+  ),
+  const SizedBox(width: 20),
+  Comment(
+    onTap: () {}
+  ),
+],
+
       ),
     );
   }
