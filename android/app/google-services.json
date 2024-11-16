@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "121614191055",
+    "project_id": "studyhall-3ad22",
+    "storage_bucket": "studyhall-3ad22.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121614191055:android:484fbe3b66d3d4967c2aba",
+        "android_client_info": {
+          "package_name": "com.example.studyhall"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDnIGMCOD3ti-lODL_ijVHXK0IqeNTXpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

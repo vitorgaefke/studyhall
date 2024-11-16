@@ -216,7 +216,7 @@ class _StoragePageState extends State<StoragePage> {
                               fit: BoxFit.cover,
                             ),
                           ),
-                          title: Text('Quadro Eng 3 08.11'),
+                          title: const Text('Quadro Eng 3 08.11'),
                           trailing: IconButton(
                             icon: const Icon(Icons.delete),
                             onPressed: () => deleteImage(index),
