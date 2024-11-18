@@ -16,8 +16,14 @@ class ShPosts extends StatefulWidget {
 }
 
 class _ShPostsState extends State<ShPosts> {
+  bool isLiked = false;
 
-
+  // toggle do botão de like
+  void toggleLike() {
+    setState(() {
+      isLiked = !isLiked;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +62,8 @@ class _ShPostsState extends State<ShPosts> {
   ),
   const SizedBox(width: 20),
   LikeButton(
-    isLiked: true,
-    onTap: () {}
+    isLiked: isLiked,
+    onTap: toggleLike,
   ),
   const SizedBox(width: 20),
   CommentsButton(
