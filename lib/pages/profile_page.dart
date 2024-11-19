@@ -73,7 +73,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
 
           //nome
-          const MyTextBox(text: 'vitorgaefke', sectionName: 'nome'),
+          MyTextBox(text: currentUser.email?.toString() ?? 'Email não disponível', sectionName: 'nome'),
           //bio
           const MyTextBox(text: 'sua bio aqui!', sectionName: 'bio'),
           const SizedBox(height: 30),

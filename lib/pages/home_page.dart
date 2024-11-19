@@ -72,6 +72,7 @@ void postMessage() {
                         return ShPosts(
                           mensagem: post["Mensagem"],
                           user: post["Usuario"],
+                          postId: post.id,
                           );
                       },
                     );
